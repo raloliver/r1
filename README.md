@@ -1,3 +1,3 @@
-s1
+r1
 ==
-Teste de um Joomleiro ascendente a PHP Hands On!
+Funções Genéricas e CRUD Personalizado para posterior STARTER.
