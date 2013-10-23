@@ -1,0 +1,96 @@
+@colorPrimary: @linkColor;
+@colorDanger:  #d94d3f;
+@colorWarning: #F1C40F;
+@colorSuccess: #27AE60;
+@colorInfo:    #3498db;
+@colorInverse: #2C3E50;
+
+.table-bordered {
+	&.bordered-primary {
+		&, & td, & tr, & th {
+			border-color: @colorPrimary;
+		}
+	}
+	&.bordered-danger {
+		&, & td, & tr, & th {
+			border-color: @colorDanger;
+		}
+	}
+	&.bordered-info {
+		&, & td, & tr, & th {
+			border-color: @colorInfo;
+		}
+	}
+	&.bordered-success {
+		&, & td, & tr, & th {
+			border-color: @colorSuccess;
+		}
+	}
+	&.bordered-warning {
+		&, & td, & tr, & th {
+			border-color: @colorWarning;
+		}
+	}
+	&.bordered-inverse {
+		&, & td, & tr, & th {
+			border-color: @colorInverse;
+		}
+	}	
+}
+
+table {
+	&.header-primary {
+		thead {
+			background-color: @colorPrimary;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}
+	&.header-danger {
+		thead {
+			background-color: @colorDanger;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}
+	&.header-info {
+		thead {
+			background-color: @colorInfo;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}
+	&.header-success {
+		thead {
+			background-color: @colorSuccess;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}
+	&.header-warning {
+		thead {
+			background-color: @colorWarning;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}
+	&.header-inverse {
+		thead {
+			background-color: @colorInverse;
+			color: #fff;
+		}
+		tbody > tr:first-child > td {
+			border-top: 0;
+		}
+	}					
+}

@@ -1,0 +1,115 @@
+// Social Buttons
+// ------------------------
+
+@btnFacebookBackground:             #2e4a88;
+@btnFacebookBackgroundHighlight:    lighten(@btnFacebookBackground, 10%);
+
+@btnTwitterBackground:              #008DDE;
+@btnTwitterBackgroundHighlight:     lighten(@btnTwitterBackground, 10%);
+
+@btnGoogleBackground:               #CC3622;
+@btnGoogleBackgroundHighlight:      lighten(@btnGoogleBackground, 10%);
+
+@btnRssBackground:                  #F88F25;
+@btnRssBackgroundHighlight:         lighten(@btnRssBackground, 10%);
+
+// Icon Buttons
+// -------------------------
+
+.btn-icon {
+	padding-left: 10px;
+	padding-right: 10px;
+	em {
+	    display: inline-block;
+	    width: 18/14em;
+	    text-align: center;
+	}
+}
+
+// Transparent Buttons
+// -------------------------
+
+.btn-transparent {
+	background-color: transparent;
+  &, &:hover {
+     .transition(~"color .2s ease, background-color .2s ease");
+  }
+}
+
+#doBtnTransparent(@type) {
+  .btn-transparent.btn-@{type} {
+    	@name: ~`"@{type}".charAt(0).toUpperCase() + "@{type}".slice(1)`;
+		color: ~"@{btn@{name}Background}";
+	}
+}
+
+#doBtnTransparent(primary);
+#doBtnTransparent(danger); 
+#doBtnTransparent(warning); 
+#doBtnTransparent(info); 
+#doBtnTransparent(success); 
+#doBtnTransparent(inverse); 
+
+// Social Buttons
+// -------------------------
+
+.btn-facebook {
+  .buttonBackground(@btnFacebookBackground, @btnFacebookBackgroundHighlight);
+}
+
+.btn-twitter {
+  .buttonBackground(@btnTwitterBackground, @btnTwitterBackgroundHighlight);
+}
+
+.btn-google {
+  .buttonBackground(@btnGoogleBackground, @btnGoogleBackgroundHighlight);
+}
+
+.btn-rss {
+  .buttonBackground(@btnRssBackground, @btnRssBackgroundHighlight);
+}
+
+
+// Turnable buttons
+// -------------------------
+
+[class*="btn-turn-"],
+[class*="btn-turn-"]:hover {
+  .transition(~"color .2s ease, background-color .2s ease");
+}
+
+.btn-turn-primary {
+  &:hover {
+    .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+  }
+}
+// Warning appears are orange
+.btn-turn-warning {
+  &:hover {
+    .buttonBackground(@btnWarningBackground, @btnWarningBackgroundHighlight);
+  }
+}
+// Danger and error appear as red
+.btn-turn-danger {
+  &:hover {
+    .buttonBackground(@btnDangerBackground, @btnDangerBackgroundHighlight);
+  }
+}
+// Success appears as green
+.btn-turn-success {
+  &:hover {
+    .buttonBackground(@btnSuccessBackground, @btnSuccessBackgroundHighlight);
+  }
+}
+// Info appears as a neutral blue
+.btn-turn-info {
+  &:hover {
+    .buttonBackground(@btnInfoBackground, @btnInfoBackgroundHighlight);
+  }
+}
+// Inverse appears as dark gray
+.btn-turn-inverse {
+  &:hover {
+    .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
+  }
+}

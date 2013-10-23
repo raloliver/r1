@@ -1,0 +1,58 @@
+// NAV SPACED
+// ----------------
+.nav-stacked.nav-spaced {
+	li {
+		margin-bottom: 10px;
+		a, a:hover, a:focus {
+			border-width: 0;
+			.border-radius(@baseBorderRadius) !important;
+			background-color: #eee;
+		}
+		a:hover {
+			color: @linkColor;
+		}
+		&.active {
+			a {
+				background-color: @linkColor;
+				color: @white;
+			}	
+			.label {
+				background: @white;
+				color: @grayLight;
+			}
+		}
+		
+	}
+}
+
+// Img on pills
+// ----------------
+
+.nav-pills.img-pills {
+	li {
+		
+		a {
+			color: #566678;
+		}
+		&.active a {
+			color: #fff;
+		}
+		img {
+			.border-radius(3px);
+			margin-right: 10px;
+		}
+	}
+}
+
+// Toggle on pills
+// ----------------
+
+.nav-stacked {
+	a {
+		.clearfix();
+	}
+	.toggle {
+		margin: 0;
+		float: right;
+	}
+}

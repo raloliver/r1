@@ -21,9 +21,10 @@ $dbsa	= mysql_select_db(DBSA) or die ('Erro na seleção do Banco de Dados! '.my
 			}
 	}
 
-// FUNCAO DE CADASTRO LEITURA
+// FUNCAO DE LEITURA
 	function read($tabela, $condicao = NULL){		
 			$query_read = "SELECT * FROM {$tabela} {$condicao}";
+			// AQUI PODERIAMOS CRIAR UMA VARIAVEL PARA CADA FILTRO, POREM COMO TEMOS UMA FUNCAO GENERICA, O IDEAL E QUE SEJA GERAL
 			$string_read = mysql_query($query_read) or die ('Erro ao ler dados! '.$tabela.' '.mysql_error());
 			$fields_count = mysql_num_fields($string_read);
 			for($y = 0; $y < $fields_count; $y++){
@@ -37,4 +38,25 @@ $dbsa	= mysql_select_db(DBSA) or die ('Erro na seleção do Banco de Dados! '.my
 			return $results;
 		}
 
+// FUNCAO DE EDICAO
+	function update($tabela, array $datas, $where){
+		// AQUI ARMAZENAMOS OS DADOS DENTRO DE ARRAY PESSOAL
+			foreach ($datas as $fields => $values) {
+				// ESSA CONDICAO SE REFERENCIA A FORMA COMO MONTAMOS O CRUD
+				$fields_up[] = "$fields = '$values'";
+			}
+				$fields_up		= implode(", ", $fields_up);
+				$query_update	= "UPDATE {$tabela} SET $fields_up WHERE {$where}";
+				$string_update	= mysql_query($query_update) or die ('Erro ao atualizar dados! '.$tabela.' '.mysql_error());
+
+				if ($string_update) {
+					return TRUE;
+				}
+	}
+
+// FUNCAO DE DELETAR
+	function delete ($tabela, $where){
+		$query_delete 	= "DELETE FROM {$tabela} WHERE {$where}";
+		$string_delete	= mysql_query($query_delete) or die ('Erro ao deletar dados! '.$tabela.' '.mysql_error());
+	}
  ?>

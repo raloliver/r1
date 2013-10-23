@@ -1,0 +1,70 @@
+// Colors
+@barColor: @linkColor;
+@overlayColor: @bodyBackground;
+@backColor: @bodyBackground;
+@radialSize: 100px;
+@radialBarSize: 30px;
+
+/* -------------------------------------
+ * Bar container
+ * ------------------------------------- */
+.progress-radial {
+  position: relative;
+  width: @radialSize;
+  height: @radialSize;
+  border-radius: 50%;
+  border: 2px solid @backColor; // remove gradient color
+  background-color: @barColor; // default 100%
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+// hide excess of gradient in opera
+x:-o-prefocus, .progress-radial {
+  background-clip: content-box;
+}
+
+/* -------------------------------------
+ * Optional centered circle w/text
+ * ------------------------------------- */  
+.progress-radial .overlay{
+  position: absolute;
+  width: @radialSize - @radialBarSize;
+  height: @radialSize - @radialBarSize;
+  background-color: @overlayColor;
+  border-radius: 50%;
+  margin-left: @radialBarSize/2;
+  margin-top: @radialBarSize/2;
+  text-align: center;
+  line-height: @radialSize - @radialBarSize;
+  font-size: 22px;
+  font-weight: 100;  
+}
+
+
+
+@progressClassStep: 5; // step of % for created classes
+
+#radial-progress(@progressClassStep);
+
+#radial-progress(@step) {
+    
+    @loops: round(100 / @step);
+    @increment: round(360 / @loops);
+    @half: round(100 / 2);
+    
+    .progressX(@index, @nextdeg) when (@index < @half){
+        .progress-@{index} {
+          background-image: linear-gradient(90deg, @backColor 50%, transparent 50%, transparent), linear-gradient(~"@{nextdeg}deg", @barColor 50%, @backColor 50%, @backColor);
+        }
+        .progressX(@index + 5, @nextdeg + @increment);
+    }
+
+    .progressX(@index, @nextdeg) when (@index >= @half) and (@index < 100) {
+        .progress-@{index} {
+          background-image: linear-gradient(~"@{nextdeg}deg", @barColor 50%, transparent 50%, transparent), linear-gradient(270deg, @barColor 50%, @backColor 50%, @backColor);
+        }
+        .progressX(@index + 5, @nextdeg + @increment);
+    }
+    .progressX(100, @_) {};
+    .progressX(0, 90);  
+  }

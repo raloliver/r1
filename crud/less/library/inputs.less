@@ -1,0 +1,203 @@
+
+
+// CHECKBOX AND RADIOS
+// ------------------------
+.checkbox,
+.radio {
+  position: relative;
+  padding-left: 30px;
+  .transition(color linear 0.2s);
+  overflow: hidden;
+  .ctrl-overlay {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 21px;
+    background-color: @inputBorder;
+    .border-radius(3px);
+    color: #fff;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    //text-indent: 1px;
+    text-indent: 0\9;
+    .transition(background-color linear 0.2s);
+  }
+
+  &.checked .ctrl-overlay {
+    content: "\f00c";
+    background-color: @linkColor;
+    .transition(background-color linear 0.2s);
+  }
+
+  &.disabled .ctrl-overlay {
+    background-color: @inputBorder;
+  }
+
+  &:hover {
+    color: @linkColor;
+    .transition(color linear 0.2s);
+  };
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    .opacity(0);
+    outline: none !important;
+  }
+}
+
+.radio {
+  .ctrl-overlay {
+    .border-radius(100px);
+  }
+}
+
+// TOGGLE
+// ------------------------
+
+
+.toggle {
+  position: relative;
+  width: 70px;
+  height: 30px;
+  margin-bottom: 10px;
+  .border-radius(500px);
+  overflow: hidden;
+  background-color: @inputBorder;
+  color: @white;
+  cursor: pointer;
+  .transition(background-color .3s ease-out);
+  input {
+    .opacity(0);
+    outline: none;
+    display: none;
+  }
+
+  > em,
+  > em[class^="icon-"] {
+    position: absolute;
+    font-size: 24px;
+    line-height: 30px;
+    right: auto; left: 0;
+    margin-left: 0;
+    padding: 0;
+    margin: 0;
+    .transition(margin-left .3s ease-out);
+  }
+
+  .toggle-on,
+  .toggle-off {
+    width: 50px;
+    height: 30px;
+    margin-left: 20px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .toggle-off {
+    display: block;
+  }
+  .toggle-on {
+    display: none;
+  }
+
+
+  &.on {
+    background-color: @linkColor;
+    .transition(background-color .3s ease-out);
+    > em {
+      margin-left: 40px;
+      .transition(margin-left .3s ease-out);
+    }
+    .toggle-on {
+      display: block;
+      margin-left: 0;
+    }
+    .toggle-off {
+      display: none;
+    }
+  }
+  &.disabled {
+    background-color: @inputBorder;
+  }
+
+}
+
+.toggle.toggle-square {
+  .border-radius(6px);
+}
+
+.toggle-success.on {
+    background-color: @colorSuccess;
+}
+.toggle-warning.on {
+    background-color: @colorWarning;
+}
+.toggle-info.on {
+    background-color: @colorInfo;
+}
+.toggle-inverse.on {
+    background-color: @colorInverse;
+}
+.toggle-danger.on {
+    background-color: @colorInverse;
+}
+
+
+// DROPDOWN SELECT
+// ------------------------
+
+
+.dropdown-select {
+  text-align: left !important;
+  .caret {
+    position: absolute;
+    right: 10px;
+  }
+  + .dropdown-menu {
+    width: 100%;
+  }
+
+}
+
+// INPUT ICONS
+// ------------------------
+
+
+.input-append.input-icon,
+.input-prepend.input-icon,
+.input-append.input-icon.input-focused,
+.input-prepend.input-icon.input-focused {
+  input {
+    outline: none !important;
+  }
+  > .add-on, 
+  > .add-on:hover {
+    background-color: #fff !important;
+    color: @inputBorder !important;
+  }
+}
+.input-prepend.input-icon {
+  .add-on:first-child {
+    border-right: 0 none;
+  }
+}
+.input-append.input-icon {
+  .add-on:last-child {
+    border-left: 0 none;
+  }
+}
+
+/* fix safari space between inline blocks inputs */
+.input-prepend input {
+    margin-left: -2px;
+}
+.input-append input {
+    margin-right: -2px;
+}

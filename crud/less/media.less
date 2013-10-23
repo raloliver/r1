@@ -1,0 +1,72 @@
+// Media objects
+// Source: http://stubbornella.org/content/?p=497
+// --------------------------------------------------
+
+
+// Common styles
+// -------------------------
+
+// Clear the floats
+.media,
+.media-body {
+  overflow: hidden;
+  *overflow: visible;
+  zoom: 1;
+}
+
+// Proper spacing between instances of .media
+.media,
+.media .media {
+  margin-top: 15px;
+}
+.media:first-child {
+  margin-top: 0;
+}
+
+// For images and videos, set to block
+.media-object {
+  display: block;
+}
+
+// Reset margins on headings for tighter default spacing
+.media-heading {
+  margin: 0 0 5px;
+}
+
+
+// Media image alignment
+// -------------------------
+
+.media > .pull-left {
+  margin-right: 10px;
+}
+.media > .pull-right {
+  margin-left: 10px;
+}
+
+
+// Media list variation
+// -------------------------
+
+// Undo default ul/ol styles
+.media-list {
+  margin-left: 0;
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  .border-radius(@baseBorderRadius);
+  .media {
+     border-style: solid;
+     border-width: 1px 0 0;
+     border-color: #ddd;
+     padding-top: 10px;
+     margin-top: 0;
+     &:first-child {
+      padding-top: 0;
+      border-top-width: 0;
+     }
+  }
+  .img-polaroid {
+    padding: 4px;
+  }
+}

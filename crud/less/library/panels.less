@@ -1,0 +1,84 @@
+//
+// Panels
+// based on popovers
+// --------------------------------------------------
+ 
+
+.panel {
+  position: relative;
+  max-width: 276px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left; // Reset given new insertion method
+  background-color: @white;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  .border-radius(6px);
+  //.box-shadow(0 2px 5px rgba(0,0,0,.2));
+  // Overrides for proper insertion
+  white-space: normal;
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.5)");
+  
+  .clearfix();
+  
+  > h1, 
+  > h2, 
+  > h3, 
+  > h4, 
+  > h5, 
+  > h6  {
+    margin: 0 0 @baseLineHeight/2 0; // reset heading margin
+    padding-bottom: @baseLineHeight / 2;
+    font-weight: bold;
+    line-height: 1;
+    border-bottom: 1px solid @linkColor;
+    .border-radius(5px 5px 0 0);
+  
+    &:empty {
+      display: none;
+    }
+  }
+  p {
+    margin: 0;
+  }
+  
+  &[class*="panel-"] {
+    h1, h2, h3, h4, h5, h6 {
+      border: none;
+    }
+  }
+  
+  &.panel-primary {
+    color: @white;
+    border-color: darken(@btnPrimaryBackground, 10%);
+    background-color: @btnPrimaryBackground;
+  }
+  &.panel-info {
+    color: @white;
+    border-color: darken(@btnInfoBackground, 10%);
+    background-color: @btnInfoBackground;
+  }
+  &.panel-danger {
+    color: @white;
+    border-color: darken(@btnDangerBackground, 10%);
+    background-color: @btnDangerBackground;
+  }
+  &.panel-warning {
+    color: @white;
+    border-color: darken(@btnWarningBackground, 10%);
+    background-color: @btnWarningBackground;
+  }
+  &.panel-success {
+    color: @white;
+    border-color: darken(@btnSuccessBackground, 10%);
+    background-color: @btnSuccessBackground;
+  }
+  &.panel-inverse {
+    color: @white;
+    border-color: darken(@btnInverseBackground, 10%);
+    background-color: @btnInverseBackground;
+  }
+  
+}
+
+

@@ -1,0 +1,76 @@
+
+@thumbPadding: 0;
+@thumbBorder: 0;
+
+.thumbnails.flush {
+	margin-left: 0;
+	padding: @thumbPadding;
+	background-color: @white;
+	border: @thumbBorder solid #ccc;
+	.border-radius(@borderRadiusLarge);
+
+	li {
+		margin: 0;
+	}
+	.thumbnail {
+		padding: 0;
+		border: 0;
+		img  {
+			.border-radius(0);
+			width: 100%;
+			height: auto;
+			.opacity(100);
+			.transition(opacity ease .3s);
+			&:hover {
+				.opacity(80);
+				.transition(opacity ease .3s);
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		background-color: transparent;
+		.thumbnail {
+			background-color: transparent;
+			text-align: center;
+			img {
+				width: auto;
+			}
+		}
+	}		
+
+}
+
+@spanWidth: ((((@gridColumnWidth * @gridColumns) + (@gridGutterWidth * (@gridColumns - 1))) - (@thumbPadding*2 + @thumbBorder*2))  / @gridColumns);
+
+.thumbnails.flush{
+	.spanXflush (@gridColumns, @spanWidth);
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+	@spanWidth768: ((((@gridColumnWidth768 * @gridColumns) + (@gridGutterWidth768 * (@gridColumns - 1))) - (@thumbPadding*2 + @thumbBorder*2))  / @gridColumns);
+
+	.thumbnails.flush{
+		.spanXflush (@gridColumns, @spanWidth768);
+	}
+}
+
+@media (min-width: 1200px) {
+
+	@spanWidth1200: ((((@gridColumnWidth1200 * @gridColumns) + (@gridGutterWidth1200 * (@gridColumns - 1))) - (@thumbPadding*2 + @thumbBorder*2))  / @gridColumns);
+
+	.thumbnails.flush{
+		.spanXflush (@gridColumns, @spanWidth1200);
+	}
+
+}
+
+.spanXflush (@index, @spanWidth) when (@index > 0) {
+   (~"li.span@{index}") {
+      width: (@spanWidth * @index);
+   }
+   .spanXflush(@index - 1, @spanWidth);
+}
+
+.spanXflush (0, @_) {}
