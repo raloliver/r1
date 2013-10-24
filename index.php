@@ -10,11 +10,9 @@ require('/rows/rall.php');
 <html lang="pt-br">
 	<head>
 		<title>SNews</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+		<!-- <meta charset="utf-8"> -->
 		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-		<style type="text/css">
-		</style>
 	</head>
 		<body>
 			<?php 

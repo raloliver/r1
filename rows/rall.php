@@ -42,12 +42,6 @@
 		}
 	}
 
-	if (cpf_validacao('364.258.951-00')) { 		//GERADOR DE CPF http://www.geradorcpf.com/
-		echo 'CPF Válido';
-	}else{
-		echo 'CPF Inválido';
-	}
-
 // VALIDACAO DE EMAIL
 	function mail_valid ($email) {
 		if (preg_match('/[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\.\-]+\.[a-z]{2,4}$/',$email)) {
