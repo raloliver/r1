@@ -1,8 +1,14 @@
 <?php 
+// SET HOME
 
-// GET HOME
+	function setHome(){
+		echo BASE;
+	}
 
-	function rAlias ($string) {
+
+// URL AMIGAVEL
+
+	function setAlias ($string) {
 		$a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
 		$b = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
 		//O FORMATO PARA INSERIR NO BANCO ESTA CORRETO, POREM E PRECISO DECODIFICAR PARA QUE A VISUALIZACAO TAMBEM SEJA CORRIGIDA
@@ -20,6 +26,4 @@
 		// UTILIZAMOS O RETURN PARA ARMEZAR O RETORNO DESSE FUNCAO NO BD
 		return strtolower(utf8_encode($string));
 	}
-
-	echo rAlias('Ação contra animais não é bom!<?php ?>');
  ?>
