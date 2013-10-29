@@ -33,6 +33,8 @@ require('/rows/rall.php');
 
 				echo '</ul>';
 				}
+
+				setFile('imgs/test');
 			?>
 		</body>
 <!-- ARQUIVO QUE CARREGA TODOS OS JAVASCRIPTS DO SITE -->

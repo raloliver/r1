@@ -83,6 +83,25 @@
 			}else{
 			 return FALSE;
 			}
+		}
 
+// FUNCAO PARA FORMATAR DATA EM TIMESTAMP
+		function formDate($data) {
+			// AQUI RECEBER O PADRAO PARA ENTAO EFETUAR O TIMESTAMP
+			$timestamp 	= explode(" ", $data);
+			$getData	= $timestamp[0];
+			$getTime	= $timestamp[1];
+
+				$setData	= explode('/', $getData);
+				$dia 		= $setData[0];
+				$mes 		= $setData[1];
+				$ano 		= $setData[2];
+			// AQUI VAMOS DEFINIR AS HORAS, CASO SELECIONA OU NAO
+				if (!$getTime):
+					$getTime = date('H:i:s');
+				endif;
+			$result 	= $ano.'-'.$mes.'-'.$dia.' '.$getTime;
+
+			return $result;
 		}
  ?>

@@ -53,7 +53,6 @@
 	}
 
 // FUNCAO CATEGORIA
-
 	function getCat($catID, $field = NULL) {
 		$category 		= mysql_real_escape_string($catID);
 		// AGORA VAMOS LER
@@ -99,7 +98,6 @@
 
 					$user['picture'] = $gravatar;
 				endif;
-
 				// AGORA RETORNAMOS A FOTO DO USUARIO CASO EXISTA
 				if (!$field) {
 					return $user;
@@ -109,7 +107,5 @@
 		}else{
 			echo 'Erro: autor inexistente!';
 		}
-
 	}
-
  ?>

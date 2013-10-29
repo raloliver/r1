@@ -5,6 +5,15 @@
 		echo BASE;
 	}
 
+// FUNCAO INCLUDE FILES
+
+	function setFile($nameFile){
+		if (file_exists($nameFile.'.php')) {
+			include($nameFile.'.php');
+		}else{
+			echo 'Erro ao incluir o arquivo <strong>'.$nameFile.'.php</strong>. Arquivo ou caminho inexistente!';
+		}
+	}
 
 // URL AMIGAVEL
 
