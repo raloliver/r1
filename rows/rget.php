@@ -51,9 +51,4 @@
 								title="'.$title.'" alt="'.$alt.'" />';
 		}		
 	}
-
-	getThumb('01.jpg', 'Image1', 'Image1', '360', '180', '', '', 'http://www.raloliver.com.br');
-	getThumb('02.jpg', 'Image2', 'Image1', '360', '180', '', '', '#');
-	getThumb('03.jpg', 'Image3', 'Image1', '360', '180', '', '', '');
-	getThumb('17.jpg', 'Default', 'Default', '200', '200', '', '', '');
  ?>

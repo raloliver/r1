@@ -50,4 +50,39 @@
 			return FALSE;
 		}
 	}
+
+// FUNCAO DE ENVIO DE EMAILS
+	function sendMail($assunto,$mensagem,$remetente,$nomeRemetente,$destino,$nomeDestino,$reply = NULL,$replyNome = NULL){
+
+			require_once('mail/class.phpmailer.php'); //Include pasta/classe do PHPMailer
+
+			$mail = new PHPMailer(); //STARTS CLASSE
+			$mail->IsSMTP(); //HABILITA ENVIO SMTP
+			$mail->SMTPAuth = TRUE; //ATIVA EMAIL AUTENTICADO
+			$mail->IsHTML(TRUE); //AQUI DETERMINAMOS QUE PODEMOS UTILIZAR HTML NO ENVIO DOS EMAILS
+
+			$mail->Host = MAILHOST; //SERVIDOR DE ENVIO
+			$mail->Port = MAILPORT; //PORTA DE ENVIO
+			$mail->Username = MAILUSER; //EMAIL PARA SMTP AUTENTICADO
+			$mail->Password = MAILPASS; //PORTA DE ENVIO
+
+			$mail->From = utf8_decode($remetente); //REMETENTE
+			$mail->FromName = utf8_decode($nomeRemetente); //REMETENTE NOME
+
+			// CONDICAO PARA CHAMAR EMAIL DE RESPOSTA
+			if ($reply != NULL) {
+				$mail->AddReplyTo(utf8_decode($reply),utf8_decode($replyNome));
+			}
+			
+			$mail->Subject = utf8_decode($assunto); //ASSUNTO
+			$mail->Body = utf8_decode($mensagem); //MENSAGEM echo '<span>Erro ao enviar email. Por favor entre em contato pelo e-mail contato@raloliver.com!</span>';
+			$mail->AddAddress(utf8_decode($destino),utf8_decode($nomeDestino)); //EMAIL E NOME DESTINO echo '<span>Mensagem enviada com sucesso! Obrigado.</span>';
+
+			if($mail->Send()){
+			 return TRUE;
+			}else{
+			 return FALSE;
+			}
+
+		}
  ?>

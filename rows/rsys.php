@@ -13,8 +13,8 @@ define ('SITETAGS', 'raloliver, freelancer web');
 
 // EMAIL SERVER
 
-define ('MAILUSER', 'mail@dominio.com');
-define ('MAILPASS', '****');
+define ('MAILUSER', 'no-reply@raloliver.com');
+define ('MAILPASS', 'FWbv=bqKru#o');
 define ('MAILPORT', '587');
-define ('MAILHOST', 'mail.dominio.com');
+define ('MAILHOST', 'mail.raloliver.com');
  ?>
