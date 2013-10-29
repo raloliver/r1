@@ -16,7 +16,23 @@ require('/rows/rall.php');
 	</head>
 		<body>
 			<?php 
-				sendMail('Email Teste', 'Conteúdo da Mensagem', MAILUSER, 'Ral Oliver', 'contato@raloliver.com', 'Teste', 'contato@raloliver.com.br', 'Israel Oliveira');
+				$readArticle = read('rows_articles');
+
+				echo '<ul>';
+
+				if ($readArticle) {
+					foreach ($readArticle as $article): 
+
+						echo '<li>';
+							echo $article['title'].' - ';
+							echo getCat("$article[category]", 'name').' - ';
+							echo getUser("$article[user]", 'name');
+						echo '</li>';
+
+					endforeach;
+
+				echo '</ul>';
+				}
 			?>
 		</body>
 <!-- ARQUIVO QUE CARREGA TODOS OS JAVASCRIPTS DO SITE -->
