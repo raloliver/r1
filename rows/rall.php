@@ -104,4 +104,70 @@
 
 			return $result;
 		}
+
+// GERENCIAR ESTATISTICAS
+		function viewManager($times = 900) {
+			// VERIFICAR MES E ANO
+			$secMonth = date ('m');
+			$secYear  = date ('Y');
+
+			// CASO NAO EXISTA UMA SESSAO, DEVEMOS INICIA-LA
+			if (empty($_SESSION['startView']['session'])) {
+				$_SESSION['startView']['session'] 	= session_id();
+				$_SESSION['startView']['ip'] 	 	= $_SERVER['REMOTE_ADDR'];
+				$_SESSION['startView']['url'] 	 	= $_SERVER['PHP_SELF'];
+				$_SESSION['startView']['time_end']  = time() + $times;
+				// APOS INICIAR A SESSAO, DEVEMOS PASSAR OS DADOS PARA A TABELA
+				create('rows_views_online',$_SESSION['startView']);
+
+				// CASO O MES/ANO NAO EXISTAM, AQUI DEVEMOS CRIA-LO
+				$readViews = read('rows_views', "WHERE month = '$secMonth' AND year = '$secYear'");
+				if (!$readViews) {
+					$createViews = array ('month' => $secMonth, 'year' => $secYear);
+					create('rows_views', $createViews);
+				}else{
+					foreach ($readViews as $views);
+					// AQUI VERIFICAMOS O VISITANTES DO DIA
+					if (empty($_COOKIE['startView'])) {
+						$updateViews = array (
+							'views'  	=> $views['views']+1,
+							'visitors' 	=> $views['visitors']+1,
+							);
+						update('rows_views', $updateViews, "month = '$secMonth' AND year = '$secYear' ");
+						// COMO JA HOUVE UMA VISITA DESSE USER NO DIA, DEVEMOS SETAR UM COOOKIE DE 24H
+						setcookie('startView',time(),time()+60*60*24,'/');
+						// CASO EXISTA, VAMOS ATUALIZAR AS VISITAS
+					}else{
+						$updateVisitas = array ('views' => $views['views']+1);
+						update('rows_views', $updateVisitas, "month = '$secMonth' AND year = '$secYear' ");
+					}
+				}
+			}else{
+			// AQUI CONTAMOS OS PAGEVIEWS
+				$readPageViews = read('rows_views',"WHERE month = '$secMonth' AND year = '$secYear'");
+				// AQUI CONFERIMOS SE EXISTE 
+				if ($readPageViews) {
+					foreach ($readPageViews as $rpgv);
+					$updatePageViews = array ('pageviews' => $rpgv['pageviews']+1);
+					// AGORA SIM, EXECUTAMOS
+					update('rows_views', $updatePageViews, "month = '$secMonth' AND year = '$secYear' ");
+				}
+
+
+			// SE EXISTIR A SESSAO E O TIME_END FOR MENOR QUE O TEMPO ATUAL, FINALIZAR A SESSAO
+				$id_session = $_SESSION['startView']['session'];
+				// SE O TEMPO FOR MENOR QUE TIMES, FINALIZAR A SESSAO
+				if ($_SESSION['startView']['time_end'] <= time()) {
+					// APOS FINALIZAR A SESSAO, E NECESSARIO APAGAR OS DADOS DO BD
+					delete('rows_views_online',"session = '$id_session' OR time_end <= time(NOW()) ");
+					unset($_SESSION['startView']);
+				}else{
+					// CASO O USER CONTINUE LOGADO, E NECESSARIO ATUALIZAR A SESSAO
+					$_SESSION['startView']['time_end']  = time() + $times;
+					// AGORA DEVEMOS ATUALIAR O TIME_END NA TABELA
+					$timeEnd = array('time_end' => $_SESSION['startView']['time_end']);
+					update('rows_views_online', $timeEnd, "session = '$id_session'");
+				}
+			}
+		}
  ?>

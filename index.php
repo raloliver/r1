@@ -1,4 +1,5 @@
 <?php 
+ob_start(); session_start();
 // ACESSO SO ARQUIVO DE CONFIGURACAO
 require('/rows/rdba.php');
 require('/rows/rget.php');
@@ -15,30 +16,10 @@ require('/rows/rall.php');
 		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 	</head>
 		<body>
-
 			<?php 
-				$readArticle = read('rows_articles');
-
-				echo '<ul>';
-
-				if ($readArticle) {
-					foreach ($readArticle as $article): 
-
-						echo '<li>';
-							echo $article['title'].' - ';
-							echo getCat("$article[category]", 'name').' - ';
-							echo getUser("$article[user]", 'name');
-						echo '</li>';
-
-					endforeach;
-
-				echo '</ul>';
-				}
-
-				// setFile('imgs/test');
-				setViews ('14');
+				viewManager();
 			?>			
 		</body>
 <!-- ARQUIVO QUE CARREGA TODOS OS JAVASCRIPTS DO SITE -->
-<?php include ('js/rjs.php');?>
+<?php include ('js/rjs.php'); ob_end_flush(); ?>
 </html>
