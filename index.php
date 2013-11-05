@@ -15,6 +15,7 @@ require('/rows/rall.php');
 		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 	</head>
 		<body>
+
 			<?php 
 				$readArticle = read('rows_articles');
 
@@ -34,8 +35,9 @@ require('/rows/rall.php');
 				echo '</ul>';
 				}
 
-				setFile('imgs/test');
-			?>
+				// setFile('imgs/test');
+				setViews ('14');
+			?>			
 		</body>
 <!-- ARQUIVO QUE CARREGA TODOS OS JAVASCRIPTS DO SITE -->
 <?php include ('js/rjs.php');?>

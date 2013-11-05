@@ -35,4 +35,20 @@
 		// UTILIZAMOS O RETURN PARA ARMEZAR O RETORNO DESSE FUNCAO NO BD
 		return strtolower(utf8_encode($string));
 	}
+
+// PAGEVIEWS EM ARTIGOS
+	function setViews($idArticle){
+		$idArticle 	 = mysql_real_escape_string($idArticle);
+		$readArticle = read('rows_articles',"WHERE id = '$idArticle'");
+		// NESSE CASO NAO IREMOS REALIZAR LOOPING, IREMOS COLETAR UM TOPICO POR VEZ
+		foreach ($readArticle as $article);
+			$views = $article['views'];
+			// TODA VEZ QUE O ARTIGO FOR ACESSO, SERA SOMADO MAIS UM
+			$views = $views +1;
+			$dataViews = array (
+				// INFORMAMOS A COLUNA E A VARIAVEL
+				'views' => $views
+				);
+			update('rows_articles', $dataViews, "id = '$idArticle'");
+	}
  ?>
