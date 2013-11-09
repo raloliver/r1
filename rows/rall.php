@@ -170,4 +170,41 @@
 				}
 			}
 		}
+
+// PAGINACAO
+		function pagination($tabela, $cond, $pagMaxs, $link, $pag, $span = NULL, $pagLinks = 4){
+			$pagRead  = read("$tabela", "$cond");
+			$pagTotal = count($pagRead);
+			// AQUI DETERMINAMOS A EXIBICAO OU NAO DA PAGINACAO BASEADO NA QUANTIDADE DE ITENS LISTADOS
+			if ($pagTotal > $pagMaxs) {
+				// AQUI FAZEMOS A DIVISAO DA QUANTIDADE MAXIMA NAS PAGINAS
+				// USAMOS O ceil PARA APROXIMAR O NUMERO DO RESULTADO
+				$pagLast = ceil($pagTotal/$pagMaxs);
+				// DEVEMOS DETERMINAR A QUANTIDADE DE EXIBICAO DE LINKS POR PAGINA. VARIVEL pagLinks
+				if ($span) {
+					echo '<div class="pagination '.$span.'">';
+				}else{
+					echo '<div class="pagination">';					
+				}				
+					echo '<a href="'.$link.'1">First</a>&nbsp;&nbsp;&nbsp;';
+					// ANTERIORES
+							// AQUI COLETAMOS OS LINKS DAS PAGINAS
+						for ($i=$pag - $pagLinks; $i <= $pag - 1  ; $i++) { 
+							// DEVEMOS EXIBIR APENAS RESULTADOS MAIORES QUE ZERO
+							if ($i >= 1) {
+								echo '<a href="'.$link.$i.'">'.$i.'</a>&nbsp;&nbsp;&nbsp;';
+							}
+						}
+					echo '<span class="active"><strong>'.$pag.'</strong></span>&nbsp;&nbsp;&nbsp;';
+					// POSTERIORES
+						for ($i=$pag + 1 ; $i <= $pag + $pagLinks; $i++) { 
+							// DEVEMOS EXIBIR APENAS RESULTADOS EXISTENTES
+							if ($i <= $pagLast) {
+								echo '<a href="'.$link.$i.'">'.$i.'</a>&nbsp;&nbsp;&nbsp;';
+							}
+						}
+					echo '<a href="'.$link.$pagLast.'">Last</a>';
+					echo '</div>';
+			}
+		}
  ?>
